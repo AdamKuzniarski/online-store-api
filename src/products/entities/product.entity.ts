@@ -5,15 +5,12 @@ export class Product {
   @PrimaryColumn('uuid')
   id: string;
 
-  @Column({ length: 125 })
+  @Column()
   name: string;
-
-  @Column({ length: 500 })
+  @Column()
   description: string;
-
-  @Column({ length: 5 })
+  @Column()
   price: number;
-
-  @Column({ length: 200 })
+  @Column()
   stock: number;
 }
