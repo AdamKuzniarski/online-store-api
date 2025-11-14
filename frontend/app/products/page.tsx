@@ -1,3 +1,31 @@
+/* Dynamisch! */
+
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+async function fetchProducts(): Promise<Product[]> {
+  const res = await fetch(`${API_URL}/products`, { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error("Failed to fetch products");
+  }
+
+  return res.json();
+}
+
+export default async function ProductsPage() {
+  const products = await fetchProducts();
+  console.log("Products:", products);
+}
+
+//--------------------------------------------------------------------------------------->>>>><<<<<----------------------------------------------->>>>
+/* statisch! */
+/* 
+import Link from "next/link";
 const products = [
   { id: 1, name: "Iphone", price: 100 },
   { id: 2, name: "Bildschirm", price: 150 },
@@ -23,6 +51,8 @@ export default function ProductsPage() {
           );
         })}
       </ul>
+      <Link href="/">Zurück zur Startseite</Link>
     </main>
   );
 }
+ */
